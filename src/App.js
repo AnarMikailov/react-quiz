@@ -1,22 +1,23 @@
-import "./App.css";
-import quiz from "./quiz.json";
-import { useState, useReducer } from "react";
+import './App.css';
+import quiz from './quiz.json';
+import { useState, useReducer } from 'react';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [correct, setCorrect] = useState("");
+  const [correct, setCorrect] = useState(false);
   const questionContent = quiz.questions[count].question;
-
+  console.log(quiz.questions[6].answers[quiz.questions[6].correctIndex]);
   const variant1 = quiz.questions[count].answers[0];
   const variant2 = quiz.questions[count].answers[1];
   const variant3 = quiz.questions[count].answers[2];
   const variant4 = quiz.questions[count].answers[3];
   const correctAnswer =
     quiz.questions[count].answers[quiz.questions[count].correctIndex];
-
-  const clickHandler = (e) => {
-    setCorrect(e.target.textContent === correctAnswer ? true : false);
-    console.log(e.target.textContent === correctAnswer);
+  const clickHandler = e => {
+    setCorrect(e.target.textContent == correctAnswer ? true : false);
+    // console.log(e.target.textContent === correctAnswer);
+    // console.log(correctAnswer, e.target.textContent);
+    // console.log(e.target);
   };
 
   const nextquizHandler = () => {
@@ -36,26 +37,25 @@ function App() {
         </div>
         <div className="answers">
           <button
-            className={correct ? " green" : " orange"}
+            className={correct ? ' green' : ' orange'}
             onClick={clickHandler}
           >
-            {" "}
             {variant1}
           </button>
           <button
-            className={correct ? " green" : " orange"}
+            className={correct ? ' green' : ' orange'}
             onClick={clickHandler}
           >
             {variant2}
           </button>
           <button
-            className={correct ? " green" : " orange"}
+            className={correct ? ' green' : ' orange'}
             onClick={clickHandler}
           >
             {variant3}
           </button>
           <button
-            className={correct ? " green" : " orange"}
+            className={correct ? ' green' : ' orange'}
             onClick={clickHandler}
           >
             {variant4}
